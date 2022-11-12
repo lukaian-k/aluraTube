@@ -32,7 +32,6 @@ const StyleHeader = styled.div`
         border-radius: 50%;
     }
     .user-info {
-        margin-top: 60px;
         display: flex;
         align-items: center;
         width: 100%;
@@ -40,10 +39,16 @@ const StyleHeader = styled.div`
         gap: 16px;
     }
 `
+const StyleBanner = styled.div`
+    background: url(${config.banner}) center top/cover no-repeat fixed;
+    max-width: 100%;
+    height: 230px;
+`
+
 function Header() {
     return (
         <StyleHeader>
-            {/* <img src="banner"/> */}
+            <StyleBanner />
 
             <section className="user-info">
                 <img src={`http://github.com/${config.github}.png`} />
