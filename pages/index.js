@@ -3,9 +3,10 @@ import styled from "styled-components"
 import { CSSReset } from "../src/components/CSSReset"
 import Menu from "../src/components/Menu"
 import { StyledTimeline } from "../src/components/Timeline"
+import Bookmarks from "../src/components/Timeline"
 
 
-function HomePage() {
+export default function HomePage() {
     return (
         <>
             <CSSReset />
@@ -21,8 +22,6 @@ function HomePage() {
         </>
     )
 }
-
-export default HomePage
 
 
 const StyleHeader = styled.div`
@@ -67,7 +66,6 @@ function Header() {
 
 
 function TimeLine(props) {
-    // console.log("Componente: ", props.playlists)
     const playlistNames = Object.keys(props.playlists)
 
     return (
@@ -75,8 +73,6 @@ function TimeLine(props) {
             {
                 playlistNames.map((playlistName) => {
                     const videos = props.playlists[playlistName]
-                    console.log(playlistName)
-                    console.log(videos)
                     return (
                         <section>
                             <h2>{playlistName}</h2>
@@ -98,6 +94,7 @@ function TimeLine(props) {
                     )
                 })
             }
+            <Bookmarks bookmarks={config.bookmarks} />
         </StyledTimeline>
     )
 }

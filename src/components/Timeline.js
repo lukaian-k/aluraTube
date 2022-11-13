@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+
 export const StyledTimeline = styled.div`
     flex: 1;
     width: 100%;
@@ -44,3 +45,66 @@ export const StyledTimeline = styled.div`
         }
     }
 `
+
+
+const StyleBookmarks = styled.section`
+    flex: 1;
+    width: 100%;
+    padding: 16px;
+    margin-top: 50px;
+    overflow: hidden;
+    text-align: center;
+    h2 {
+        margin-bottom: 0px;
+        font-size: 16px;
+        text-transform: capitalize;
+    }
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        
+    }
+    section {
+        width: calc(100vw - 16px * 4);
+        display: grid;
+        grid-gap: 16px;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+        grid-auto-columns: minmax(150px,1fr);
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        a {
+            scroll-snap-align: start;
+            span {
+                padding-top: 8px;
+                display: block;
+                color: ${({ theme }) => theme.textColorBase || "#222222"};
+            }
+        }
+    }
+`
+
+export default function Bookmarks(props) {
+    const listBookmarks = props.bookmarks
+    console.log(listBookmarks)
+    return (
+        <StyleBookmarks>
+            <h2>Canais Favoritos</h2>
+            <section>
+                {
+                    listBookmarks.map((bookmark) => {
+                        return (
+                            <a href={`https://www.youtube.com/c/${bookmark.url}`}>
+                                <img src={bookmark.logo} />
+                                <span>
+                                    {bookmark.name}
+                                </span>
+                            </a>
+                        )
+                    })
+                }
+            </section>
+        </StyleBookmarks>
+    )
+}
