@@ -27,7 +27,7 @@ export default function HomePage() {
 }
 
 
-const StyleHeader = styled.div`
+const StyledHeader = styled.div`
     img {
         width: 80px;
         height: 80px;
@@ -41,16 +41,20 @@ const StyleHeader = styled.div`
         gap: 16px;
     }
 `
-const StyleBanner = styled.div`
-    background: url(${config.banner}) center top/cover no-repeat fixed;
-    max-width: 100%;
+const StyledBanner = styled.div`
+    /* metodo 1: acessando o json de forma direta
+    background: url(${config.banner}) center top/cover no-repeat fixed; */
+    
+    /* metodo 2: passando o json por parametro - props */
+    background: url(${({ banner }) => banner}) center top/cover no-repeat fixed;
+
     height: 230px;
 `
 
 function Header() {
     return (
-        <StyleHeader>
-            <StyleBanner />
+        <StyledHeader>
+            <StyledBanner banner={config.banner} />
 
             <section className="user-info">
                 <img src={`http://github.com/${config.github}.png`} />
@@ -63,7 +67,7 @@ function Header() {
                     </p>
                 </div>
             </section>
-        </StyleHeader>
+        </StyledHeader>
     )
 }
 
@@ -77,7 +81,7 @@ function TimeLine({ searchValue, ...props }) {
                 playlistNames.map((playlistName) => {
                     const videos = props.playlists[playlistName]
                     return (
-                        <section>
+                        <section key={playlistName}>
                             <h2>{playlistName}</h2>
                             <div>
                                 {
@@ -90,7 +94,7 @@ function TimeLine({ searchValue, ...props }) {
                                         })
                                         .map((video) => {
                                             return (
-                                                <a href={`https://www.youtube.com/watch?v=${video.url}`}>
+                                                <a key={video.url} href={`https://www.youtube.com/watch?v=${video.url}`}>
                                                     <img src={`https://img.youtube.com/vi/${video.url}/hqdefault.jpg`} />
                                                     <span>
                                                         {video.title}

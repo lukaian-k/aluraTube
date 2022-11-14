@@ -47,7 +47,7 @@ export const StyledTimeline = styled.div`
 `
 
 
-const StyleBookmarks = styled.section`
+const StyledBookmarks = styled.section`
     flex: 1;
     width: 100%;
     padding: 16px;
@@ -89,13 +89,13 @@ export default function Bookmarks(props) {
     const listBookmarks = props.bookmarks
     
     return (
-        <StyleBookmarks>
+        <StyledBookmarks>
             <h2>Canais Favoritos</h2>
             <section>
                 {
                     listBookmarks.map((bookmark) => {
                         return (
-                            <a href={`https://www.youtube.com/c/${bookmark.url}`}>
+                            <a key={bookmark.url} href={`https://www.youtube.com/c/${bookmark.url}`}>
                                 <img src={bookmark.logo} />
                                 <span>
                                     {bookmark.name}
@@ -105,6 +105,6 @@ export default function Bookmarks(props) {
                     })
                 }
             </section>
-        </StyleBookmarks>
+        </StyledBookmarks>
     )
 }
