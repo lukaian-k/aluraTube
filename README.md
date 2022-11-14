@@ -1,7 +1,7 @@
 <div align="center">
 
 
-| <h2><strong>aluraTube: alanTube version</h2></strong> | [![info](https://img.shields.io/badge/lukaian-alanTube-646496)](https://aluratube-lac-theta.vercel.app/) |
+| <h2><strong>aluraTube: alanTube version</h2></strong> | [![info](https://img.shields.io/badge/lukaian-alanTube-646496)](https://github.com/lukaian-k/aluraTube) |
 |--|--|
 
 

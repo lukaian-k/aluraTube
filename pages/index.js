@@ -1,3 +1,4 @@
+import React from "react"
 import config from "../config.json"
 import styled from "styled-components"
 import { CSSReset } from "../src/components/CSSReset"
@@ -7,6 +8,8 @@ import Bookmarks from "../src/components/Timeline"
 
 
 export default function HomePage() {
+    const [valorDoFiltro, setValorDoFiltro] = React.useState("")
+
     return (
         <>
             <CSSReset />
@@ -15,9 +18,9 @@ export default function HomePage() {
                 flexDirection: "column",
                 flex: 1,
             }}>
-                <Menu />
+                <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
                 <Header />
-                <TimeLine playlists={config.playlists} />
+                <TimeLine searchValue={valorDoFiltro} playlists={config.playlists} />
             </div>
         </>
     )
@@ -65,7 +68,7 @@ function Header() {
 }
 
 
-function TimeLine(props) {
+function TimeLine({ searchValue, ...props }) {
     const playlistNames = Object.keys(props.playlists)
 
     return (
@@ -78,16 +81,23 @@ function TimeLine(props) {
                             <h2>{playlistName}</h2>
                             <div>
                                 {
-                                    videos.map((video) => {
-                                        return (
-                                            <a href={`https://www.youtube.com/watch?v=${video.url}`}>
-                                                <img src={`https://img.youtube.com/vi/${video.url}/hqdefault.jpg`} />
-                                                <span>
-                                                    {video.title}
-                                                </span>
-                                            </a>
-                                        )
-                                    })
+                                    videos
+                                        .filter((video) => {
+                                            const titleNormalized = video.title.toLowerCase()
+                                            const searchValueNormalized = searchValue.toLowerCase()
+
+                                            return titleNormalized.includes(searchValueNormalized)
+                                        })
+                                        .map((video) => {
+                                            return (
+                                                <a href={`https://www.youtube.com/watch?v=${video.url}`}>
+                                                    <img src={`https://img.youtube.com/vi/${video.url}/hqdefault.jpg`} />
+                                                    <span>
+                                                        {video.title}
+                                                    </span>
+                                                </a>
+                                            )
+                                        })
                                 }
                             </div>
                         </section>

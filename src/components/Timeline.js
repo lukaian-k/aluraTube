@@ -87,7 +87,7 @@ const StyleBookmarks = styled.section`
 
 export default function Bookmarks(props) {
     const listBookmarks = props.bookmarks
-    console.log(listBookmarks)
+    
     return (
         <StyleBookmarks>
             <h2>Canais Favoritos</h2>
