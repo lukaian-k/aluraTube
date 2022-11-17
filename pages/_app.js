@@ -22,6 +22,14 @@ const theme = {
 }
 
 
+export default function _App(props) {
+    return (
+        <ProviderWrapper>
+            <MyApp {...props} />
+        </ProviderWrapper>
+    )
+}
+
 function ProviderWrapper(props) {
     return (
         <ColorModeProvider initialMode={"light"}>
@@ -29,7 +37,6 @@ function ProviderWrapper(props) {
         </ColorModeProvider>
     )
 }
-
 
 function MyApp({ Component, pageProps }) {
     const context = React.useContext(ColorModeContext)
@@ -39,15 +46,6 @@ function MyApp({ Component, pageProps }) {
             <CSSReset />
             <Component {...pageProps} />
         </ThemeProvider>
-    )
-}
-
-
-export default function _App(props) {
-    return (
-        <ProviderWrapper>
-            <MyApp {...props} />
-        </ProviderWrapper>
     )
 }
 

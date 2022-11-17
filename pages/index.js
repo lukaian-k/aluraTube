@@ -10,17 +10,15 @@ export default function HomePage() {
     const [valorDoFiltro, setValorDoFiltro] = React.useState("")
 
     return (
-        <>
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                flex: 1,
-            }}>
-                <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
-                <Header />
-                <TimeLine searchValue={valorDoFiltro} playlists={config.playlists} />
-            </div>
-        </>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+        }}>
+            <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
+            <Header />
+            <TimeLine searchValue={valorDoFiltro} playlists={config.playlists} />
+        </div>
     )
 }
 
